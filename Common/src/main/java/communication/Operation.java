@@ -1,0 +1,37 @@
+package communication;
+
+/**
+ *
+ * @author Radin
+ */
+
+
+public enum Operation {
+    LOGIN,
+    ADD_PLAYER,
+    ADD_TEAM, 
+    GET_PLAYERS, 
+    EDIT_PLAYER,
+    EDIT_TEAM, 
+    GET_TEAMS,
+    ADD_GAME,
+    GET_GAMES,
+    ADD_PLAYED_GAME,
+    GET_ALL_GAMES, 
+    GET_ALL_TEAMS,
+    GET_ALL_PLAYED_GAMES,
+    GET_ALL_REFEREES, 
+    ADD_LIST_OF_REFEREES,
+    GET_LIST_OF_REFEREES,
+    GET_ALL_PLAYERS,
+    ADD_COACH,
+    GET_COACHES, 
+    EDIT_COACH,
+    ADD_PLAYER_STATISTIC,
+    GET_PLAYER_STATISTICS, 
+    EDIT_PLAYER_STATS,
+    GET_ALL_TEAM_STATS, 
+    GET_ALL_LEAGUES,
+    EDIT_TEAM_STAT, 
+    ADD_TEAM_STAT,
+}
