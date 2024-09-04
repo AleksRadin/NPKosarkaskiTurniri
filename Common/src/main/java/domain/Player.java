@@ -60,6 +60,12 @@ public class Player implements GenericEntity{
     }
 
     public void setId(Long id) {
+        if (id == null) {
+            throw new NullPointerException("ID cannot be null.");
+        }
+        if (id <= 0) {
+            throw new IllegalArgumentException("ID must be greater than 0.");
+        }
         this.id = id;
     }
 
@@ -68,6 +74,9 @@ public class Player implements GenericEntity{
     }
 
     public void setFirstname(String firstname) {
+        if (firstname == null || firstname.trim().isEmpty()) {
+            throw new NullPointerException("Firstname cannot be null or empty.");
+        }
         this.firstname = firstname;
     }
 
@@ -76,6 +85,9 @@ public class Player implements GenericEntity{
     }
 
     public void setLastname(String lastname) {
+        if (lastname == null || lastname.trim().isEmpty()) {
+            throw new NullPointerException("Lastname cannot be null or empty.");
+        }
         this.lastname = lastname;
     }
 
@@ -84,6 +96,12 @@ public class Player implements GenericEntity{
     }
 
     public void setBirthday(LocalDate birthday) {
+        if (birthday == null) {
+            throw new NullPointerException("Birthday cannot be null.");
+        }
+        if (birthday.isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("Birthday cannot be in the future.");
+        }
         this.birthday = birthday;
     }
 
@@ -92,6 +110,9 @@ public class Player implements GenericEntity{
     }
 
     public void setPosition(String position) {
+        if (position == null || position.trim().isEmpty()) {
+            throw new NullPointerException("Position cannot be null or empty.");
+        }
         this.position = position;
     }
 
@@ -100,14 +121,20 @@ public class Player implements GenericEntity{
     }
 
     public void setHeight(double height) {
+        if (height < 0) {
+            throw new IllegalArgumentException("Height cannot be negative.");
+        }
         this.height = height;
     }
-
+    
     public double getWeight() {
         return weight;
     }
 
     public void setWeight(double weight) {
+        if (weight < 0) {
+            throw new IllegalArgumentException("Weight cannot be negative.");
+        }
         this.weight = weight;
     }
 
@@ -116,6 +143,9 @@ public class Player implements GenericEntity{
     }
 
     public void setTeam(Team team) {
+        if (team == null) {
+            throw new NullPointerException("Team cannot be null.");
+        }
         this.team = team;
     }
 
@@ -124,6 +154,9 @@ public class Player implements GenericEntity{
     }
 
     public void setState(PlayerState state) {
+        if (state == null) {
+            throw new NullPointerException("Player state cannot be null.");
+        }
         this.state = state;
     }
 

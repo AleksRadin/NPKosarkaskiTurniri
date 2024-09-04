@@ -49,12 +49,24 @@ public class PlayerStatistic implements GenericEntity{
         return id;
     }
     
-
+    public void setId(Long id) {
+        if (id == null) {
+            throw new NullPointerException("ID cannot be null.");
+        }
+        if (id <= 0) {
+            throw new IllegalArgumentException("ID must be greater than 0.");
+        }
+        this.id = id;
+    }
+    
     public Player getPlayer() {
         return player;
     }
 
     public void setPlayer(Player player) {
+        if (player == null) {
+            throw new NullPointerException("Player cannot be null.");
+        }
         this.player = player;
     }
 
@@ -63,14 +75,20 @@ public class PlayerStatistic implements GenericEntity{
     }
 
     public void setGame(Game game) {
+        if (game == null) {
+            throw new NullPointerException("Game cannot be null.");
+        }
         this.game = game;
     }
-
+    
     public int getMinutesPlayed() {
         return minutesPlayed;
     }
 
     public void setMinutesPlayed(int minutesPlayed) {
+        if (minutesPlayed < 0) {
+            throw new IllegalArgumentException("Minutes played cannot be negative.");
+        }
         this.minutesPlayed = minutesPlayed;
     }
 
@@ -79,6 +97,9 @@ public class PlayerStatistic implements GenericEntity{
     }
 
     public void setPointsScored(int pointsScored) {
+        if (pointsScored < 0) {
+            throw new IllegalArgumentException("Points scored cannot be negative.");
+        }
         this.pointsScored = pointsScored;
     }
 
@@ -87,6 +108,9 @@ public class PlayerStatistic implements GenericEntity{
     }
 
     public void setThreePointersMade(int threePointersMade) {
+        if (threePointersMade < 0) {
+            throw new IllegalArgumentException("Three pointers made cannot be negative.");
+        }
         this.threePointersMade = threePointersMade;
     }
 
@@ -95,6 +119,9 @@ public class PlayerStatistic implements GenericEntity{
     }
 
     public void setThreePointersAttempted(int threePointersAttempted) {
+        if (threePointersAttempted < 0) {
+            throw new IllegalArgumentException("Three pointers attempted cannot be negative.");
+        }
         this.threePointersAttempted = threePointersAttempted;
     }
 
@@ -103,6 +130,9 @@ public class PlayerStatistic implements GenericEntity{
     }
 
     public void setFreeThrowsMade(int freeThrowsMade) {
+        if (freeThrowsMade < 0) {
+            throw new IllegalArgumentException("Free throws made cannot be negative.");
+        }
         this.freeThrowsMade = freeThrowsMade;
     }
 
@@ -111,6 +141,9 @@ public class PlayerStatistic implements GenericEntity{
     }
 
     public void setFreeThrowsAttempted(int freeThrowsAttempted) {
+        if (freeThrowsAttempted < 0) {
+            throw new IllegalArgumentException("Free throws attempted cannot be negative.");
+        }
         this.freeThrowsAttempted = freeThrowsAttempted;
     }
 
@@ -119,14 +152,19 @@ public class PlayerStatistic implements GenericEntity{
     }
 
     public void setReboundsOffensive(int reboundsOffensive) {
+        if (reboundsOffensive < 0) {
+            throw new IllegalArgumentException("Offensive rebounds cannot be negative.");
+        }
         this.reboundsOffensive = reboundsOffensive;
     }
-
     public int getReboundsDefensive() {
         return reboundsDefensive;
     }
 
     public void setReboundsDefensive(int reboundsDefensive) {
+        if (reboundsDefensive < 0) {
+            throw new IllegalArgumentException("Defensive rebounds cannot be negative.");
+        }
         this.reboundsDefensive = reboundsDefensive;
     }
 
@@ -135,6 +173,9 @@ public class PlayerStatistic implements GenericEntity{
     }
 
     public void setAssists(int assists) {
+        if (assists < 0) {
+            throw new IllegalArgumentException("Assists cannot be negative.");
+        }
         this.assists = assists;
     }
 
@@ -143,6 +184,9 @@ public class PlayerStatistic implements GenericEntity{
     }
 
     public void setSteals(int steals) {
+        if (steals < 0) {
+            throw new IllegalArgumentException("Steals cannot be negative.");
+        }
         this.steals = steals;
     }
 
@@ -151,6 +195,9 @@ public class PlayerStatistic implements GenericEntity{
     }
 
     public void setBlocks(int blocks) {
+        if (blocks < 0) {
+            throw new IllegalArgumentException("Blocks cannot be negative.");
+        }
         this.blocks = blocks;
     }
 
@@ -159,6 +206,9 @@ public class PlayerStatistic implements GenericEntity{
     }
 
     public void setPersonalFouls(int personalFouls) {
+        if (personalFouls < 0) {
+            throw new IllegalArgumentException("Personal fouls cannot be negative.");
+        }
         this.personalFouls = personalFouls;
     }
 
@@ -299,8 +349,4 @@ public class PlayerStatistic implements GenericEntity{
         return "id = " + id;
     }
 
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

@@ -37,6 +37,9 @@ public class Team implements GenericEntity{
     }
 
     public void setPlayers(List<Player> players) {
+        if (players == null) {
+            throw new NullPointerException("Players list cannot be null.");
+        }
         this.players = players;
     }
     
@@ -46,6 +49,12 @@ public class Team implements GenericEntity{
     }
 
     public void setId(Long id) {
+        if (id == null) {
+            throw new NullPointerException("ID cannot be null.");
+        }
+        if (id <= 0) {
+            throw new IllegalArgumentException("ID must be greater than 0.");
+        }
         this.id = id;
     }
 
@@ -54,6 +63,9 @@ public class Team implements GenericEntity{
     }
 
     public void setName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be null or empty.");
+        }
         this.name = name;
     }
 
@@ -62,14 +74,20 @@ public class Team implements GenericEntity{
     }
 
     public void setCity(String city) {
+        if (city == null || city.trim().isEmpty()) {
+            throw new IllegalArgumentException("City cannot be null or empty.");
+        }
         this.city = city;
     }
-
+    
     public String getCountry() {
         return country;
     }
 
     public void setCountry(String country) {
+        if (country == null || country.trim().isEmpty()) {
+            throw new IllegalArgumentException("Country cannot be null or empty.");
+        }
         this.country = country;
     }
 
@@ -78,9 +96,12 @@ public class Team implements GenericEntity{
     }
 
     public void setFoundedIn(int foundedIn) {
+        if (foundedIn <= 0) {
+            throw new IllegalArgumentException("Founded year must be a positive number.");
+        }
         this.foundedIn = foundedIn;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;

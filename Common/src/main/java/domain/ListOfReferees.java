@@ -36,6 +36,12 @@ public class ListOfReferees implements GenericEntity{
     }
 
     public void setId(Long id) {
+        if (id == null) {
+            throw new NullPointerException("ID cannot be null.");
+        }
+        if (id <= 0) {
+            throw new IllegalArgumentException("ID must be greater than 0.");
+        }
         this.id = id;
     }
 
@@ -44,30 +50,42 @@ public class ListOfReferees implements GenericEntity{
     }
 
     public void setHeadReferee(Referee headReferee) {
+        if (headReferee == null) {
+            throw new NullPointerException("Head referee cannot be null.");
+        }
         this.headReferee = headReferee;
     }
-
+    
     public Referee getFirstReferee() {
         return firstReferee;
     }
 
     public void setFirstReferee(Referee firstReferee) {
+        if (firstReferee == null) {
+            throw new NullPointerException("First referee cannot be null.");
+        }
         this.firstReferee = firstReferee;
     }
-
+    
     public Referee getSecondReferee() {
         return secondReferee;
     }
 
     public void setSecondReferee(Referee secondReferee) {
+        if (secondReferee == null) {
+            throw new NullPointerException("Second referee cannot be null.");
+        }
         this.secondReferee = secondReferee;
     }
-
+    
     public Game getGame() {
         return game;
     }
 
     public void setGame(Game game) {
+        if (game == null) {
+            throw new NullPointerException("Game cannot be null.");
+        }
         this.game = game;
     }
 
