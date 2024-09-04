@@ -30,6 +30,12 @@ public class Coach implements GenericEntity{
     }
 
     public void setId(Long id) {
+        if (id == null) {
+            throw new NullPointerException("ID cannot be null.");
+        }
+        if (id <= 0) {
+            throw new IllegalArgumentException("ID must be greater than 0.");
+        }
         this.id = id;
     }
 
@@ -38,6 +44,9 @@ public class Coach implements GenericEntity{
     }
 
     public void setFirstname(String firstname) {
+        if (firstname == null || firstname.isEmpty()) {
+            throw new NullPointerException("Firstname cannot be null or empty.");
+        }
         this.firstname = firstname;
     }
 
@@ -46,6 +55,9 @@ public class Coach implements GenericEntity{
     }
 
     public void setLastname(String lastname) {
+        if (lastname == null || lastname.isEmpty()) {
+            throw new NullPointerException("Lastname cannot be null or empty.");
+        }
         this.lastname = lastname;
     }
 
@@ -54,6 +66,9 @@ public class Coach implements GenericEntity{
     }
 
     public void setNumbOfChampionships(int numbOfChampionships) {
+        if (numbOfChampionships < 0) {
+            throw new IllegalArgumentException("Number of championships cannot be negative.");
+        }
         this.numbOfChampionships = numbOfChampionships;
     }
 
@@ -62,6 +77,9 @@ public class Coach implements GenericEntity{
     }
 
     public void setTeam(Team team) {
+        if (team == null) {
+            throw new NullPointerException("Team cannot be null.");
+        }
         this.team = team;
     }
 

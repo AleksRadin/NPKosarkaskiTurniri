@@ -31,14 +31,20 @@ public class PlayedGame implements GenericEntity{
     }
 
     public void setHomeTeam(Team homeTeam) {
+        if (homeTeam == null) {
+            throw new NullPointerException("Home team cannot be null.");
+        }
         this.homeTeam = homeTeam;
     }
-
+    
     public Team getAwayTeam() {
         return awayTeam;
     }
 
     public void setAwayTeam(Team awayTeam) {
+        if (awayTeam == null) {
+            throw new NullPointerException("Away team cannot be null.");
+        }
         this.awayTeam = awayTeam;
     }
 
@@ -47,6 +53,9 @@ public class PlayedGame implements GenericEntity{
     }
 
     public void setGame(Game game) {
+        if (game == null) {
+            throw new NullPointerException("Game cannot be null.");
+        }
         this.game = game;
     }
 
@@ -55,6 +64,9 @@ public class PlayedGame implements GenericEntity{
     }
 
     public void setHomeTeamPoints(int homeTeamPoints) {
+        if (homeTeamPoints < 0) {
+            throw new IllegalArgumentException("Home team points cannot be negative.");
+        }
         this.homeTeamPoints = homeTeamPoints;
     }
 
@@ -63,6 +75,9 @@ public class PlayedGame implements GenericEntity{
     }
 
     public void setAwayTeamPoints(int awayTeamPoints) {
+        if (awayTeamPoints < 0) {
+            throw new IllegalArgumentException("Away team points cannot be negative.");
+        }
         this.awayTeamPoints = awayTeamPoints;
     }
 

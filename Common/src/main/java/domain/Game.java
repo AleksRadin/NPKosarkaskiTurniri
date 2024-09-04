@@ -30,6 +30,9 @@ public class Game implements GenericEntity{
     }
 
     public void setLeague(League league) {
+        if (league == null) {
+            throw new NullPointerException("League cannot be null.");
+        }
         this.league = league;
     }
 
@@ -39,6 +42,12 @@ public class Game implements GenericEntity{
     }
 
     public void setId(Long id) {
+        if (id == null) {
+            throw new NullPointerException("ID cannot be null.");
+        }
+        if (id <= 0) {
+            throw new IllegalArgumentException("ID must be greater than 0.");
+        }
         this.id = id;
     }
 
@@ -47,6 +56,9 @@ public class Game implements GenericEntity{
     }
 
     public void setGameDate(LocalDate gameDate) {
+        if (gameDate == null) {
+            throw new NullPointerException("Game date cannot be null.");
+        }
         this.gameDate = gameDate;
     }
 
@@ -55,6 +67,9 @@ public class Game implements GenericEntity{
     }
 
     public void setGameTime(LocalTime gameTime) {
+        if (gameTime == null) {
+            throw new NullPointerException("Game time cannot be null.");
+        }
         this.gameTime = gameTime;
     }
 

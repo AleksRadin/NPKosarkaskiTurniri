@@ -27,6 +27,12 @@ public class Referee implements GenericEntity{
     }
 
     public void setId(Long id) {
+        if (id == null) {
+            throw new NullPointerException("ID cannot be null.");
+        }
+        if (id <= 0) {
+            throw new IllegalArgumentException("ID must be greater than 0.");
+        }
         this.id = id;
     }
 
@@ -35,6 +41,9 @@ public class Referee implements GenericEntity{
     }
 
     public void setFirstname(String firstname) {
+        if (firstname == null || firstname.trim().isEmpty()) {
+            throw new IllegalArgumentException("Firstname cannot be null or empty.");
+        }
         this.firstname = firstname;
     }
 
@@ -43,6 +52,9 @@ public class Referee implements GenericEntity{
     }
 
     public void setLastname(String lastname) {
+        if (lastname == null || lastname.trim().isEmpty()) {
+            throw new IllegalArgumentException("Lastname cannot be null or empty.");
+        }
         this.lastname = lastname;
     }
 

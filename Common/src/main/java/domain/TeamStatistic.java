@@ -40,6 +40,12 @@ public class TeamStatistic implements GenericEntity{
     }
 
     public void setId(Long id) {
+        if (id == null) {
+            throw new NullPointerException("ID cannot be null.");
+        }
+        if (id <= 0) {
+            throw new IllegalArgumentException("ID must be greater than 0.");
+        }
         this.id = id;
     }
 
@@ -48,6 +54,9 @@ public class TeamStatistic implements GenericEntity{
     }
 
     public void setLeague(League league) {
+        if (league == null) {
+            throw new IllegalArgumentException("League cannot be null.");
+        }
         this.league = league;
     }
 
@@ -56,6 +65,9 @@ public class TeamStatistic implements GenericEntity{
     }
 
     public void setTeam(Team team) {
+        if (team == null) {
+            throw new IllegalArgumentException("Team cannot be null.");
+        }
         this.team = team;
     }
 
@@ -64,6 +76,9 @@ public class TeamStatistic implements GenericEntity{
     }
 
     public void setPoints(int points) {
+        if (points < 0) {
+            throw new IllegalArgumentException("Points cannot be negative.");
+        }
         this.points = points;
     }
 
@@ -73,6 +88,9 @@ public class TeamStatistic implements GenericEntity{
     }
 
     public void setPlayedGames(int playedGames) {
+        if (playedGames < 0) {
+            throw new IllegalArgumentException("Played games cannot be negative.");
+        }
         this.playedGames = playedGames;
     }
 
@@ -81,14 +99,19 @@ public class TeamStatistic implements GenericEntity{
     }
 
     public void setWonGames(int wonGames) {
+        if (wonGames < 0) {
+            throw new IllegalArgumentException("Won games cannot be negative.");
+        }
         this.wonGames = wonGames;
     }
-
     public int getLostGames() {
         return lostGames;
     }
 
     public void setLostGames(int lostGames) {
+        if (lostGames < 0) {
+            throw new IllegalArgumentException("Lost games cannot be negative.");
+        }
         this.lostGames = lostGames;
     }
 
@@ -97,6 +120,9 @@ public class TeamStatistic implements GenericEntity{
     }
 
     public void setDrawnGames(int drawnGames) {
+        if (drawnGames < 0) {
+            throw new IllegalArgumentException("Drawn games cannot be negative.");
+        }
         this.drawnGames = drawnGames;
     }
 
@@ -105,6 +131,9 @@ public class TeamStatistic implements GenericEntity{
     }
 
     public void setRank(int rank) {
+        if (rank <= 0) {
+            throw new IllegalArgumentException("Rank must be positive.");
+        }
         this.rank = rank;
     }
 

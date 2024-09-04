@@ -27,6 +27,12 @@ public class League implements GenericEntity{
     }
 
     public void setId(Long id) {
+        if (id == null) {
+            throw new NullPointerException("ID cannot be null.");
+        }
+        if (id <= 0) {
+            throw new IllegalArgumentException("ID must be greater than 0.");
+        }
         this.id = id;
     }
 
@@ -35,6 +41,9 @@ public class League implements GenericEntity{
     }
 
     public void setName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new NullPointerException("Name cannot be null or empty.");
+        }
         this.name = name;
     }
 
@@ -43,6 +52,9 @@ public class League implements GenericEntity{
     }
 
     public void setSeason(String season) {
+        if (season == null || season.isEmpty()) {
+            throw new NullPointerException("Season cannot be null or empty.");
+        }
         this.season = season;
     }
 

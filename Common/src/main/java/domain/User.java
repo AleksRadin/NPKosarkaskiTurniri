@@ -35,6 +35,12 @@ public class User implements GenericEntity{
     }
 
     public void setId(Long id) {
+        if (id == null) {
+            throw new NullPointerException("ID cannot be null.");
+        }
+        if (id <= 0) {
+            throw new IllegalArgumentException("ID must be greater than 0.");
+        }
         this.id = id;
     }
 
@@ -43,14 +49,20 @@ public class User implements GenericEntity{
     }
 
     public void setFirstname(String firstname) {
+        if (firstname == null || firstname.trim().isEmpty()) {
+            throw new IllegalArgumentException("Firstname cannot be null or empty.");
+        }
         this.firstname = firstname;
     }
-
+    
     public String getLastname() {
         return lastname;
     }
 
     public void setLastname(String lastname) {
+        if (lastname == null || lastname.trim().isEmpty()) {
+            throw new IllegalArgumentException("Lastname cannot be null or empty.");
+        }
         this.lastname = lastname;
     }
 
@@ -59,6 +71,9 @@ public class User implements GenericEntity{
     }
 
     public void setUsername(String username) {
+        if (username == null || username.trim().isEmpty()) {
+            throw new IllegalArgumentException("Username cannot be null or empty.");
+        }
         this.username = username;
     }
 
@@ -67,6 +82,9 @@ public class User implements GenericEntity{
     }
 
     public void setPassword(String password) {
+        if (password == null || password.trim().isEmpty()) {
+            throw new IllegalArgumentException("Password cannot be null or empty.");
+        }
         this.password = password;
     }
 
@@ -75,6 +93,9 @@ public class User implements GenericEntity{
     }
 
     public void setRole(String role) {
+        if (role == null || role.trim().isEmpty()) {
+            throw new IllegalArgumentException("Role cannot be null or empty.");
+        }
         this.role = role;
     }
 
