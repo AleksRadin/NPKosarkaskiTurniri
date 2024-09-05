@@ -92,7 +92,10 @@ public class Game implements GenericEntity{
             return false;
         }
         final Game other = (Game) obj;
-        return Objects.equals(this.id, other.id);
+        return Objects.equals(this.id, other.id) &&
+                Objects.equals(this.gameDate, other.gameDate) &&
+                Objects.equals(this.gameTime, other.gameTime) &&
+                Objects.equals(this.league, other.league);
     }
 
     

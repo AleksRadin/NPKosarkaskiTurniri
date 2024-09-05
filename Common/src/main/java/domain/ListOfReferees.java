@@ -87,33 +87,28 @@ public class ListOfReferees implements GenericEntity{
             throw new NullPointerException("Game cannot be null.");
         }
         this.game = game;
-    }
+    } 
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.game);
-        return hash;
-    }
+	public int hashCode() {
+		return Objects.hash(firstReferee, game, headReferee, id, secondReferee);
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final ListOfReferees other = (ListOfReferees) obj;
-        return Objects.equals(this.game, other.game);
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ListOfReferees other = (ListOfReferees) obj;
+		return Objects.equals(firstReferee, other.firstReferee) && Objects.equals(game, other.game)
+				&& Objects.equals(headReferee, other.headReferee) && Objects.equals(id, other.id)
+				&& Objects.equals(secondReferee, other.secondReferee);
+	}
 
-    
-
-    @Override
+	@Override
     public String toString() {
         return "ListOfReferees{" + "headReferee=" + headReferee + ", firstReferee=" + firstReferee + ", secondReferee=" + secondReferee + ", game=" + game + '}';
     }
