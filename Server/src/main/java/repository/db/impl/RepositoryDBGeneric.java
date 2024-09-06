@@ -1,6 +1,8 @@
 package repository.db.impl;
 
 import domain.GenericEntity;
+import domain.ListOfReferees;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.sql.Connection;
