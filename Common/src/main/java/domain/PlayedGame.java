@@ -121,7 +121,7 @@ public class PlayedGame implements GenericEntity{
 
     @Override
     public String toString() {
-        return "PlayedGame{" + "homeTeam=" + homeTeam + ", awayTeam=" + awayTeam + ", game=" + game + ", homeTeamPoints=" + homeTeamPoints + ", awwayTeamPoints=" + awayTeamPoints + '}';
+        return "PlayedGame{" + "homeTeam=" + homeTeam + ", awayTeam=" + awayTeam + ", game=" + game + ", homeTeamPoints=" + homeTeamPoints + ", awayTeamPoints=" + awayTeamPoints + '}';
     }
 
     @Override

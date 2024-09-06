@@ -50,7 +50,8 @@ public class Player implements GenericEntity{
     }
   
 
-    public void loadPlayer(){
+
+	public void loadPlayer(){
         state = PlayerState.UNCHANGED;
     }
     

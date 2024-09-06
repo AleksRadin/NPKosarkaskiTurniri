@@ -166,24 +166,24 @@ public class TeamStatistic implements GenericEntity{
         if (this.playedGames != other.playedGames) {
             return false;
         }
-        if (this.wonGames != other.wonGames) {
-            return false;
-        }
-        if (this.lostGames != other.lostGames) {
-            return false;
-        }
-        if (this.drawnGames != other.drawnGames) {
-            return false;
-        }
-        if (this.rank != other.rank) {
-            return false;
-        }
+//        if (this.wonGames != other.wonGames) {
+//            return false;
+//        }
+//        if (this.lostGames != other.lostGames) {
+//            return false;
+//        }
+//        if (this.drawnGames != other.drawnGames) {
+//            return false;
+//        }
+//        if (this.rank != other.rank) {
+//            return false;
+//        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (!Objects.equals(this.league, other.league)) {
-            return false;
-        }
+//        if (!Objects.equals(this.league, other.league)) {
+//            return false;
+//        }
         return Objects.equals(this.team, other.team);
     }
 
