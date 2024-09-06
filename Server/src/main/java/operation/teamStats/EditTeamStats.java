@@ -4,7 +4,11 @@ import abst.operation.GenericOperation;
 import domain.TeamStatistic;
 
 /**
- *
+ * Predstavlja specifičnu operaciju koja ima za cilj da ažurira statistiku tima u bazi podataka.
+ * 
+ * Ova klasa nasleđuje GenericOperation i implementira operaciju za ažuriranje objekta TeamStatistic u bazi podataka.
+ * Metoda executeOperation koristi repository za ažuriranje objekta TeamStatistic u bazi podataka.
+ * 
  * @author Radin
  */
 public class EditTeamStats extends GenericOperation{

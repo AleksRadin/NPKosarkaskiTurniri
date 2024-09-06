@@ -4,7 +4,10 @@ import abst.operation.GenericOperation;
 import domain.PlayerStatistic;
 
 /**
- *
+ * Predstavlja specifičnu operaciju koja ima za cilj da izmeni statistiku igrača u bazi podataka.
+ * 
+ * Ova klasa nasleđuje GenericOperation i implementira operaciju za ažuriranje statistike igrača u bazi podataka.
+ * 
  * @author Radin
  */
 public class EditPlayerStats extends GenericOperation{

@@ -6,7 +6,11 @@ import domain.Team;
 import player.state.PlayerState;
 
 /**
- *
+ * Predstavlja specifičnu operaciju koja ima za cilj da izmeni tim u bazi podataka, zajedno sa svim igračima koji pripadaju tom timu.
+ * 
+ * Ova klasa nasleđuje GenericOperation i implementira operaciju za izmenu tima i njegovih igrača u bazi podataka. 
+ * Metoda executeOperation takođe obrađuje različite statusne promene igrača (dodati, izmenjeni, obrisani).
+ * 
  * @author Radin
  */
 public class EditTeam extends GenericOperation{

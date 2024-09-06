@@ -21,20 +21,44 @@ import java.net.Socket;
 import java.util.List;
 
 /**
- *
+ * Predstavlja radnu nit servera koja obrađuje dolazne zahteve od klijenata.
+ * Svaka instanca ove klase upravlja jednom povezanošću sa klijentom, prima zahteve,
+ * obrađuje ih putem kontrolera, i šalje odgovore nazad klijentu.
+ * 
  * @author Radin
  */
 public class ServerThread extends Thread{
+	/**
+     * Socket koji predstavlja vezu između servera i klijenta.
+     */
     Socket socket;
+    /**
+     * Sender za slanje odgovora klijentu.
+     */
     Sender sender;
+    /**
+     * Receiver za primanje zahteva od klijenta.
+     */
     Receiver receiver;
 
+    /**
+     * Konstruktor koji inicijalizuje novu radnu nit sa datim socket-om.
+     * Inicijalizuje i Sender i Receiver za komunikaciju sa klijentom.
+     * 
+     * @param socket Socket koji predstavlja vezu između servera i klijenta.
+     */
     public ServerThread(Socket socket) {
         this.socket = socket;        
         sender = new Sender(socket);
         receiver = new Receiver(socket);
     }
     
+    /**
+     * Pokreće radnu nit koja kontinuirano prima zahteve od klijenta, obrađuje ih
+     * koristeći Controller i šalje rezultate nazad klijentu.
+     * Zahtevi su obrađeni na osnovu operacije navedene u Request objektu.
+     * U slučaju greške, odgovori se šalju sa detaljima greške.
+     */
     @Override
     public void run() {
         while (!isInterrupted()) {
@@ -46,18 +70,12 @@ public class ServerThread extends Thread{
                         case LOGIN:
                             response.setResult(Controller.getInstance().login((User) request.getArgument()));
                             break;
-//                        case ADD_PLAYER:
-//                            Controller.getInstance().addPlayer((Player) request.getArgument());
-//                            break;
                         case ADD_TEAM:
                             Controller.getInstance().addTeam((Team) request.getArgument());
                             break;
                         case GET_PLAYERS:
                             response.setResult(Controller.getInstance().getPlayers((Player) request.getArgument()));
                             break;
-//                        case EDIT_PLAYER:
-//                            Controller.getInstance().editPlayer((Player) request.getArgument());
-//                            break;
                         case GET_TEAMS:
                             response.setResult(Controller.getInstance().getTeams((Team) request.getArgument()));
                             break;
@@ -139,6 +157,11 @@ public class ServerThread extends Thread{
         }
     }
     
+    /**
+     * Zatvara Receiver koji je korišćen za prijem podataka sa klijenta.
+     * 
+     * @throws IOException Ako dođe do greške prilikom zatvaranja Receiver objekta.
+     */
     public void close() throws IOException{
         receiver.close();
     }
