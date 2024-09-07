@@ -5,10 +5,16 @@ import domain.Game;
 import java.util.List;
 
 /**
- *
+ * Predstavlja specifičnu operaciju koja ima za cilj da dobije sve igre iz baze podataka.
+ * 
+ * Ova klasa nasleđuje GenericOperation i implementira operaciju dobijanja svih igara iz baze podataka.
+ * 
  * @author Radin
  */
 public class GetAllGames extends GenericOperation{
+	/**
+     * Lista igara dobijena iz baze podataka.
+     */
     List<Game> games;
     
     @Override
@@ -20,6 +26,11 @@ public class GetAllGames extends GenericOperation{
         games = repository.getAll((Game) param);
     }
 
+    /**
+     * Vraća listu svih igara dobijenih iz baze podataka.
+     * 
+     * @return Lista igara kao objekti tipa Game.
+     */
     public List<Game> getGames() {
         return games;
     }

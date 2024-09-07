@@ -9,7 +9,10 @@ import domain.ListOfReferees;
 import repository.db.impl.RepositoryDBGeneric;
 
 /**
- *
+ * Predstavlja specifičnu operaciju koja ima za cilj da sačuva listu sudija u bazi podataka.
+ * 
+ * Ova klasa nasleđuje GenericOperation i implementira operaciju dodavanja liste sudija u bazu podataka.
+ * 
  * @author Radin
  */
 public class AddListOfReferees extends GenericOperation{

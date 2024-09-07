@@ -9,13 +9,26 @@ import java.util.List;
 import thread.ServerThread;
 
 /**
- *
+ * Predstavlja server koji prihvata dolazne veze od klijenata i pokreće niti za obradu svake veze.
+ * Server sluša na portu 9000 i upravlja radnim nitima koje komuniciraju sa povezanim klijentima.
+ * 
  * @author Radin
  */
 public class Server extends Thread{
+	/**
+     * Lista radnih niti koje obrađuju klijentske veze.
+     */
     private List<ServerThread> threads = new ArrayList<>();
+    /**
+     * ServerSocket objekat koji se koristi za prihvatanje dolaznih veza.
+     */
     private ServerSocket serverSocket;
     
+    /**
+     * Pokreće server koji sluša na portu 9000 i prihvata dolazne veze.
+     * Svaka prihvaćena veza se obrađuje u novoj radnoj niti.
+     * Server nastavlja sa radom dok se ne prekine ili dođe do greške.
+     */
     public void run() {
         while (!isInterrupted()) {
             try {
@@ -37,7 +50,11 @@ public class Server extends Thread{
         }
     }
     
-    
+    /**
+     * Zaustavlja rad servera, zatvara ServerSocket i prekida sve radne niti.
+     * 
+     * @throws IOException Ako dođe do greške prilikom zatvaranja ServerSocket objekta.
+     */
     public void stopServer() throws IOException{
         serverSocket.close();
         for(ServerThread thread:threads){
