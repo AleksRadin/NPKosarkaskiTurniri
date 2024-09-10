@@ -20,15 +20,8 @@ public class AddCoachTest {
         Controller.getInstance().addCoach(coach);
 
         List<Coach> allCoaches = Controller.getInstance().getAllCoaches(new Coach());
+        
+        assertTrue(allCoaches.contains(coach), "Coach should be in the list");
 
-        boolean containsCoach = false;
-        for (Coach c : allCoaches) {
-            if (c.getId().equals(coach.getId())) {
-                containsCoach = true;
-                break;
-            }
-        }
-
-        assertTrue(containsCoach);
     }
 }

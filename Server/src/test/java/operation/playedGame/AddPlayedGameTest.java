@@ -66,17 +66,7 @@ public class AddPlayedGameTest {
         }
 
 
-        List<PlayedGame> currentPlayedGames = (List<PlayedGame>) Controller.getInstance().getAllPlayedGames(new PlayedGame());
-        boolean containsPlayedGame1 = false;
-        for (PlayedGame pg : currentPlayedGames) {
-            if (pg.getHomeTeam().getId().equals(playedGame.getHomeTeam().getId()) &&
-                pg.getAwayTeam().getId().equals(playedGame.getAwayTeam().getId()) &&
-                pg.getGame().getId().equals(playedGame.getGame().getId())) {
-                containsPlayedGame1 = true;
-                break;
-            }
-        }
-
-        assertTrue(containsPlayedGame1, "The added played game should be present in the list.");
+        List<PlayedGame> allPlayedGames = (List<PlayedGame>) Controller.getInstance().getAllPlayedGames(new PlayedGame());
+        assertTrue(allPlayedGames.contains(playedGame), "The added played game should be present in the list.");
     }
 }

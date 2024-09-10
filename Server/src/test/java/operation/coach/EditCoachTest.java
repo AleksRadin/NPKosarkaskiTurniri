@@ -20,29 +20,15 @@ public class EditCoachTest {
         Controller.getInstance().addCoach(coach);
         
         List<Coach> allCoaches = Controller.getInstance().getAllCoaches(new Coach());
-        Coach coachToEdit = null;
-        for (Coach c : allCoaches) {
-            if (c.getId().equals(coach.getId())) {
-                coachToEdit = c;
-                break;
-            }
-        }
+        assertTrue(allCoaches.contains(coach), "Coach should be present before editing.");
         
-        if (coachToEdit != null) {
-            coachToEdit.setNumbOfChampionships(4); 
-            Controller.getInstance().editCoach(coachToEdit);
-            
-            allCoaches = Controller.getInstance().getAllCoaches(new Coach());
-            
-            boolean containsEditedCoach = false;
-            for (Coach c : allCoaches) {
-                if (c.equals(coachToEdit)) {
-                    containsEditedCoach = true;
-                    break;
-                }
-            }
-
-            assertTrue(containsEditedCoach, "The edited coach should be present in the list.");
-        }
+        
+        coach.setNumbOfChampionships(4);
+        
+        Controller.getInstance().editCoach(coach);
+        
+        allCoaches = Controller.getInstance().getAllCoaches(new Coach());
+        assertTrue(allCoaches.contains(coach), "The edited coach should be present in the list.");
+        
     }
 }

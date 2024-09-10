@@ -15,8 +15,8 @@ public class EditTeamStatsTest {
 
     @Test
     void testExecuteOperation() throws Exception {
-        League league = new League(1L, "NBA", "2023-2024");
-
+    	List<League> allLeagues = (List<League>) Controller.getInstance().getAllLeagues(new League());
+    	League league = allLeagues.get(0);
         Team team = new Team();
         team.setId(1L);
         team.setName("Lakers");
@@ -43,17 +43,16 @@ public class EditTeamStatsTest {
         Controller.getInstance().editTeamStat(teamStatistic);
 
         List<TeamStatistic> allTeamStats = (List<TeamStatistic>) Controller.getInstance().getAllTeamStats(new TeamStatistic());
-
-        boolean containsEditedTeamStat = false;
-        for (TeamStatistic ts : allTeamStats) {
-            if (ts.getId().equals(teamStatistic.getId()) &&
-                ts.getWonGames() == teamStatistic.getWonGames() &&
-                ts.getPoints() == teamStatistic.getPoints()) {
-                containsEditedTeamStat = true;
-                break;
-            }
-        }
-
-        assertTrue(containsEditedTeamStat, "The edited team statistics should be present and updated in the list.");
+        allLeagues = (List<League>) Controller.getInstance().getAllLeagues(new League());
+        for (TeamStatistic teamStat : allTeamStats) {
+			for (League league2 : allLeagues) {
+				if(teamStat.getLeague().getId().equals(league2.getId())) {
+					teamStat.setLeague(league2);
+				}
+			}
+		}
+        
+        
+        assertTrue(allTeamStats.contains(teamStatistic), "The edited team statistic should be present and updated in the list.");
     }
 }

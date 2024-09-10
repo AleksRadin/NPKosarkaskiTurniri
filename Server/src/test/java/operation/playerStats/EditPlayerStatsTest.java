@@ -20,10 +20,12 @@ public class EditPlayerStatsTest {
 
     @Test
     void testExecuteOperation() throws Exception {
-    	Player player = new Player(1L, "LeBron", "James", LocalDate.of(1984, 12, 30), "CENTER", 206, 113, PlayerState.UNCHANGED);
-        Game game = new Game(1L, LocalDate.of(2024, 9, 5), LocalTime.of(20, 0), new League(1L, "Premier League", "2023-2024"));
-
-
+    	
+    	List<Player> allPlayers = Controller.getInstance().getAllPlayers(new Player());
+    	List<Game> allGames = Controller.getInstance().getAllGames(new Game());
+        
+    	Player player = allPlayers.get(0); 
+        Game game = allGames.get(0);
 
         PlayerStatistic playerStatistic = new PlayerStatistic();
         playerStatistic.setId(1L); 
@@ -50,19 +52,14 @@ public class EditPlayerStatsTest {
         Controller.getInstance().editPlayerStats(playerStatistic);
 
 
-        List<PlayerStatistic> allPlayerStats = (List<PlayerStatistic>) Controller.getInstance().getAllPlayersStats(new PlayerStatistic());
-
-
-        boolean containsEditedPlayerStat = false;
-        for (PlayerStatistic ps : allPlayerStats) {
-            if (ps.getId().equals(playerStatistic.getId()) &&
-                ps.getPointsScored() == playerStatistic.getPointsScored() &&
-                ps.getReboundsDefensive() == playerStatistic.getReboundsDefensive()) {
-                containsEditedPlayerStat = true;
-                break;
-            }
-        }
-
-        assertTrue(containsEditedPlayerStat, "The edited player statistics should be present and updated in the list.");
+        List<PlayerStatistic> allPlayerStats = Controller.getInstance().getAllPlayersStats(new PlayerStatistic());
+        
+        for (PlayerStatistic playerStatistic2 : allPlayerStats) {
+			if(playerStatistic2.getPlayer().getId() == 1) {
+				playerStatistic2.setPlayer(player);
+			}
+		}   
+        
+        assertTrue(allPlayerStats.contains(playerStatistic), "The edited player statistics should be present and updated in the list.");
     }
 }

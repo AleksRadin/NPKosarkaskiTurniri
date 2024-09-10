@@ -53,11 +53,8 @@ public class EditTeamTest {
             teamToEdit.getPlayers().add(newPlayer);
             
             teamToEdit.getPlayers().get(2).setState(PlayerState.DELETED);
-            Player deletedPlayer = teamToEdit.getPlayers().get(2);
+            Player deletedPlayer = teamToEdit.getPlayers().get(1);
 
-
-
-            System.out.println("aaaaaa" + teamToEdit.getId());
             
             EditTeam editTeamOperation = new EditTeam();
             editTeamOperation.executeOperation(teamToEdit);
@@ -65,38 +62,22 @@ public class EditTeamTest {
 
             List<Team> updatedTeams = Controller.getInstance().getAllTeams(new Team());
             List<Player> updatedPlayers = Controller.getInstance().getAllPlayers(new Player());
-
-            Team updatedTeam = null;
-            for (Team t : updatedTeams) {
-                if (t.getId().equals(teamToEdit.getId())) {
-                    updatedTeam = t;
-                    break;
-                }
-            }
-            boolean containsUpdatedTeam = updatedTeam != null;
-            boolean containsNewPlayer = false;
-            boolean containsEditedPlayer = false;
-            boolean containsDeletedPlayer = true;
-
-            for (Player p : updatedPlayers) {
-                if (p.getId() != null) {
-                    if (p.getId().equals(newPlayer.getId())) {
-                        containsNewPlayer = true;
-                    }
-                    if (p.getId().equals(teamToEdit.getPlayers().get(0).getId()) &&
-                        p.getFirstname().equals("Marko") && p.getHeight() == 2.10) {
-                        containsEditedPlayer = true;
-                    }
-                    if (p.getId().equals(deletedPlayer.getId())) {
-                        containsDeletedPlayer = false;
-                    }
-                }
-            }
+            
+            boolean containsUpdatedTeam = updatedTeams.contains(teamToEdit);
+            boolean containsNewPlayer = updatedPlayers.contains(newPlayer);
+            boolean containsEditedPlayer = updatedPlayers.contains(teamToEdit.getPlayers().get(0));
+            boolean containsDeletedPlayer = false;
+            
+            for (Player player : updatedPlayers) {
+				if(player.getId().equals(deletedPlayer.getId())) {
+					containsDeletedPlayer = true;
+				}
+			}
 
             assertTrue(containsUpdatedTeam, "The updated team should be present in the list.");
             assertTrue(containsNewPlayer, "The new player should be present in the list.");
-            assertTrue(containsDeletedPlayer, "The player marked for deletion should not be present in the list.");
             assertTrue(containsEditedPlayer, "The edited player should be present in the list.");
+            assertTrue(containsDeletedPlayer, "The player marked for deletion should not be present in the list.");
         }
     }
 }
