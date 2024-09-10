@@ -16,7 +16,8 @@ public class AddTeamStatsTest {
     @Test
     void testExecuteOperation() throws Exception {
 
-        League league = new League(1L, "NBA", "2023-2024");
+    	List<League> allLeagues = (List<League>) Controller.getInstance().getAllLeagues(new League());
+    	League league = allLeagues.get(0);
         Team team = new Team();
         team.setId(1L);
         team.setName("Lakers");
@@ -39,16 +40,16 @@ public class AddTeamStatsTest {
         Controller.getInstance().addTeamStat(teamStatistic);
 
         List<TeamStatistic> allTeamStats = (List<TeamStatistic>) Controller.getInstance().getAllTeamStats(new TeamStatistic());
+        allLeagues = (List<League>) Controller.getInstance().getAllLeagues(new League());
+        for (TeamStatistic teamStat : allTeamStats) {
+			for (League league2 : allLeagues) {
+				if(teamStat.getLeague().getId().equals(league2.getId())) {
+					teamStat.setLeague(league2);
+				}
+			}
+		}
 
 
-        boolean containsTeamStat = false;
-        for (TeamStatistic ts : allTeamStats) {
-            if (ts.getId().equals(teamStatistic.getId())) {
-                containsTeamStat = true;
-                break;
-            }
-        }
-
-        assertTrue(containsTeamStat, "The added team statistic should be present in the list.");
+        assertTrue(allTeamStats.contains(teamStatistic), "The added team statistic should be present in the list.");
     }
 }

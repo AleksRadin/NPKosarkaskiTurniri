@@ -25,24 +25,6 @@ public class AddGameTest {
         Controller.getInstance().addGame(game);
         
         List<Game> allGames = Controller.getInstance().getAllGames(new Game());
-        Game gameToVerify = null;
-        for (Game g : allGames) {
-            if (g.getId().equals(game.getId())) {
-                gameToVerify = g;
-                break;
-            }
-        }
-        
-        if (gameToVerify != null) {
-            boolean containsGame = false;
-            for (Game g : allGames) {
-                if (g.equals(gameToVerify)) {
-                    containsGame = true;
-                    break;
-                }
-            }
-            
-            assertTrue(containsGame, "The added game should be present in the list.");
-        }
+        assertTrue(allGames.contains(game), "The added game should be present in the list.");
     }
 }

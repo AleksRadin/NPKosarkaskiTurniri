@@ -21,9 +21,12 @@ public class AddPlayerStatsTest {
     @Test
     void testExecuteOperation() throws Exception {
 
-    	Player player = new Player(1L, "LeBron", "James", LocalDate.of(1984, 12, 30), "CENTER", 206, 113, PlayerState.UNCHANGED);
-        Game game = new Game(1L, LocalDate.of(2024, 9, 5), LocalTime.of(20, 0), new League(1L, "NBA", "2023-2024"));
+    	List<Player> allPlayers = Controller.getInstance().getAllPlayers(new Player());
+    	List<Game> allGames = Controller.getInstance().getAllGames(new Game());
         
+    	Player player = allPlayers.get(0); 
+        Game game = allGames.get(0);
+    	
         PlayerStatistic playerStatistic = new PlayerStatistic();
         playerStatistic.setId(1L); 
         playerStatistic.setPlayer(player);
@@ -39,22 +42,19 @@ public class AddPlayerStatsTest {
         playerStatistic.setAssists(5);
         playerStatistic.setSteals(1);
         playerStatistic.setBlocks(1);
-        playerStatistic.setPersonalFouls(2);
+        playerStatistic.setPersonalFouls(66);
 
         Controller.getInstance().addPlayerStats(playerStatistic);
 
+        
 
         List<PlayerStatistic> allPlayerStats = Controller.getInstance().getAllPlayersStats(new PlayerStatistic());
-
-        boolean containsPlayerStat = false;
-        for (PlayerStatistic ps : allPlayerStats) {
-            if (ps.getId().equals(playerStatistic.getId())) {
-                containsPlayerStat = true;
-                break;
-            }
-        }
-
-
-        assertTrue(containsPlayerStat, "The added player statistic should be present in the list.");
+        
+        for (PlayerStatistic playerStatistic2 : allPlayerStats) {
+			if(playerStatistic2.getPlayer().getId() == 1) {
+				playerStatistic2.setPlayer(player);
+			}
+		}   
+        assertTrue(allPlayerStats.contains(playerStatistic), "The added player statistic should be present in the list.");
     }
 }

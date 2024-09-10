@@ -539,7 +539,7 @@ public class PlayerStatistic implements GenericEntity{
         if (!Objects.equals(this.player, other.player)) {
             return false;
         }
-        return Objects.equals(this.game, other.game);
+        return Objects.equals(this.game.getId(), other.game.getId());
     }
 
     /**

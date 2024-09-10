@@ -21,7 +21,6 @@ public class EditTeam extends GenericOperation{
     @Override
     protected void executeOperation(Object param) throws Exception {
         Team team = (Team) param;
-    	System.out.println(team.getId() + "bbbbb");
         repository.edit(team);
         for (Player player : team.getPlayers()) {
             switch (player.getState()) {
